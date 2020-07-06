@@ -1,0 +1,35 @@
+{
+  "name": "fashion-blog-be",
+  "version": "1.0.0",
+  "description": "The API for water my fashion-blog app",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js",
+    "test": "cross-env DB_ENV=testing jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "author": "Taylor Cool",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taylorbcool/fashion-blog/be"
+  },
+  "homepage": "https://github.com/taylorbcool/fashion-blog/be",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.8",
+    "pg": "^7.18.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.0",
+    "nodemon": "^2.0.2"
+  }
+}
