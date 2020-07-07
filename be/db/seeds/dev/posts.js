@@ -11,8 +11,18 @@ exports.seed = function(knex) {
           description: '',
           items: []
         },
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+        {
+          id: 2,
+          user_id: 1,
+          description: '',
+          items: []
+        },
+        {
+          id: 3,
+          user_id: 2,
+          description: '',
+          items: []
+        }
       ]);
     });
 };
