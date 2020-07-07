@@ -19,7 +19,7 @@ const options = {
             }
         ]
     },
-    apis: ['./routes/UserRouter.js', './routes/PostRouter.js'],
+    apis: ['../users/UserRouter.js'],
     basePath: '/'
 };
 
