@@ -1,5 +1,5 @@
 require('dotenv').config()
-require('./db/startMongoose')
+require('./api/services/startMongoose')
 
 const server = require('./api/server');
 
