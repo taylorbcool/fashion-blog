@@ -1,45 +1,57 @@
-const db = require('../../db/db-config.js');
+// UserController.js
+const bcrypt = require("bcrypt");
+const { User } = require("../../db/schemas/UserSchema");
 
-module.exports = {
-  add,
-  find,
-  findBy,
-  findById,
-  update,
-  remove
+const validateUser = (user) => {
+  if (!user.username || !user.password || !user.email) return false;
+  return true;
 };
 
-function find() {
-  return db('users').select('id', 'username');
-}
+exports.userList = (req, res, next) => {
+  console.log("user_list called");
+  User.find({}, "username").exec((err, listUsers) => {
+    if (err) return next(err);
 
-function findBy(filter) {
-  return db('users').where(filter);
-}
+    // Success
+    return res.json(listUsers);
+  });
+};
 
-function add(user) {
-  return db('users').insert(user).then(([id]) => {
-    return findById(id)
-  })
-}
+exports.userGet = (req, res, next) => {
+  User.findById(req.params.id).exec((err, user) => {
+    if (err) next(err);
 
-function findById(id) {
-  return db('users')
-    .where({ id })
-    .first();
-}
+    // success
+    res.json(user);
+  });
+};
 
-function update(changes, id) {
-  return db('users')
-    .where('id', id)
-    .update(changes)
-    .then(() => {
-      return findById(id)
-    })
-}
+exports.userCreate = (req, res, next) => {
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email,
+  });
 
-function remove(id) {
-  return db('users')
-    .where('id', id)
-    .del()
-}
+  console.log(user);
+  if (!validateUser(user)) {
+    res.status(400);
+    res.json({
+      message: "all required fields must be present",
+    });
+
+    return res;
+  }
+
+  // Gen salt
+  user.salt = bcrypt.genSaltSync(10);
+
+  // Hash
+  user.password = bcrypt.hashSync(user.password, user.salt);
+
+  return user.save((err) => {
+    if (err) return next(err);
+
+    return res.json(user);
+  });
+};
