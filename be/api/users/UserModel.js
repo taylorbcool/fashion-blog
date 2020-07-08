@@ -1,6 +1,6 @@
 // UserController.js
 const bcrypt = require("bcrypt");
-const { User } = require("../schemas/UserSchema");
+const { User } = require("./UserSchema");
 
 const validateUser = (user) => {
   if (!user.username || !user.password || !user.email) return false;

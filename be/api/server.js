@@ -2,7 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const helmet = require('helmet')
 
-const usersRouter = require('./users/UserRouter.js')
+const UserRouter = require('./users/UserRouter.js')
+const PostRouter = require('./posts/PostRouter.js')
 const logger = require('./middleware/logger')
 
 const server = express()
@@ -19,10 +20,11 @@ server.use(bp.json());
 
 const { swaggerRouter, getSwagger } = require('./swagger/swaggerRouter');
 server.use('/', swaggerRouter);
-server.use('/api/users', usersRouter)
+server.use('/api/users', UserRouter)
+server.use('/api/posts', PostRouter)
 
 server.get('/', (req, res) => {
-    res.status(200).json({ message: 'server up and running' })
+  res.status(200).json({ message: 'server up and running' })
 })
 
 server.get('/api', (req, res) => {

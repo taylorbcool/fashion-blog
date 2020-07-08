@@ -29,7 +29,7 @@ UserRouter.get('/', userList);
  *                  application/json:
  */
 UserRouter.get('/test', async (req, res) => {
-  res.json({ message: 'User route is up!' });
+  res.json({ message: 'User router is up!' });
 });
 
 /**
