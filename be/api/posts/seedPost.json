@@ -1,0 +1,11 @@
+{
+  "author": "5f04d462130337e2d52912bc",
+  "body": "my dope fit",
+  "img_url": "https://i.imgur.com/sTdPOsC.jpg",
+  "items": [
+    {"item": "shirt", "brand": "thrifted", "price": 4.99},
+    {"item": "pants", "brand": "Gap", "price": 19.99},
+    {"item": "belt", "brand": "thrifted", "price": 3.99},
+    {"item": "shoes", "brand": "Deehos", "price": 39.99}
+  ]
+}

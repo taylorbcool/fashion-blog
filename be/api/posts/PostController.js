@@ -18,8 +18,12 @@ const validatePost = (post) => {
 
 exports.post_list = (req, res, next) => {
   console.log("post_list called");
-  Post.find({}, "comments")
-    .populate("author")
+  Post.find({})
+    .populate({
+        path: "author",
+        select: "username"
+    })
+    .populate("posts")
     .exec((err, list_posts) => {
       if (err) return next(err);
 
@@ -38,7 +42,6 @@ exports.post_get = (req, res, next) => {
       path: "comments",
       populate: {
         path: "author",
-        model: "User",
         select: "username",
       },
     })
@@ -54,6 +57,7 @@ exports.post_create_post = (req, res, next) => {
     author: req.body.author,
     body: req.body.body,
     img_url: req.body.img_url,
+    items: req.body.items
   });
 
   if (!validatePost(post)) {
