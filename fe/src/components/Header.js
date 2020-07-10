@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import theme from '../styles/theme';
+
 import {
   Collapse,
   Navbar,
@@ -11,8 +11,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
-  NavbarText
+  DropdownItem
 } from 'reactstrap';
 
 const Header = (props) => {
