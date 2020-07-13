@@ -1,31 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import axiosWithAuth from '../auth/axiosWithAuth.js'
+import React from 'react'
 import Post from '../components/Post.js'
 
 import { Spinner } from 'reactstrap'
 
-const PostList = () => {
-  const { isLoading, setIsLoading } = useState(true)
-  const { posts, setPosts } = useState([])
-
-  useEffect(() => {
-    axiosWithAuth.get('/posts')
-    .then(res => {
-      setPosts(res.data)
-      console.log(res.data)
-      setIsLoading(false)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }, [])
+const PostList = (props) => {
 
   return(
     <>
-    {isLoading && <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color='primary' />}
-    {!isLoading && (
+    {props.isLoading && <Spinner style={{ width: '3rem', height: '3rem' }} type="grow" color='primary' />}
+    {!props.isLoading && (
       <>
-        {posts.map(post => (<Post key={post._id} post={post} />))}
+        {props.posts.map(post => (<Post key={post._id} post={post} />))}
       </>
     )}
     </>

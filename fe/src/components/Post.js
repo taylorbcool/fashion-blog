@@ -1,22 +1,24 @@
 import React from 'react'
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Button, Col, Container
 } from 'reactstrap'
 
 const Post = props => {
   return (
-    <div>
+    <Col sm='5'>
       <Card>
-        <CardImg top width="100%" src={props.post.img_url} alt="Card image cap" />
+        <CardImg top src={props.post.img_url} alt="Card image cap" />
         <CardBody>
-          <CardTitle>{props.post.author}</CardTitle>
-          <CardSubtitle>{props.post.body}</CardSubtitle>
-          <CardText>{props.post.items}</CardText>
+          <CardTitle tag='h3'>{props.post.body}</CardTitle>
+          <CardSubtitle tag='h5'>{props.post.author.username}</CardSubtitle>
+          {props.post.items.map(item => (
+            <CardText>{item.item}: {item.brand}, {item.price}</CardText>
+          ))}
           <Button>Like</Button>
         </CardBody>
       </Card>
-    </div>
+    </Col>
   )
 }
 

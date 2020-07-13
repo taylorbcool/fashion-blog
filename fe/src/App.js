@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
+import axiosWithAuth from './auth/axiosWithAuth.js'
 import Header from './components/Header'
 import PostList from './views/PostList'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [loading, setLoading] = useState(false)
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    console.log('useEffect fired!')
+    axiosWithAuth.get('/posts')
+    .then(res => {
+      setPosts(res.data)
+      console.log(posts)
+      setLoading(false)
+    })
+    .catch(err => {
+      console.log('axios error? ', err)
+    })
+  }, [])
+
   return (
     <div className="App">
       <Header/>
-      <h1>Picture feed here!</h1>
-      <PostList />
+      <PostList posts={posts} loading={loading} />
     </div>
   );
 }

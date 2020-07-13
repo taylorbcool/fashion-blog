@@ -1,11 +1,13 @@
 import React from 'react';
-
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, withRouter } from 'react-router-dom';
 import App from './App';
 
-function index() {
-  return(
-    <App />
-  )
-}
+const AppWithRouter = withRouter(App);
 
-export default index
+ReactDOM.render(
+	<Router>
+		<AppWithRouter />
+	</Router>,
+	document.getElementById('root')
+);
