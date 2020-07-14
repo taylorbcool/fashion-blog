@@ -14,11 +14,10 @@ function App() {
     axiosWithAuth.get('/posts')
     .then(res => {
       setPosts(res.data)
-      console.log(posts)
       setLoading(false)
     })
     .catch(err => {
-      console.log('axios error? ', err)
+      console.log('axios error: ', err)
     })
   }, [])
 
